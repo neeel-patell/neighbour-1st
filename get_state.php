@@ -7,5 +7,5 @@
     while($row = $result->fetch_array()){
         array_push($data,array("id"=>$row['id'],"name"=>$row['name']));
     }
-    echo json_encode($data);
+    echo json_encode(array("data"=>$data));
 ?>

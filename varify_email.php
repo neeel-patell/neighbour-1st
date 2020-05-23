@@ -15,7 +15,7 @@
             $otp = rand(100000,999999);
             $body = "Your One time Password for registration is <font color='blue' size='5'><u>$otp</u></font> which is valid for next 30 Minutes, enter it to complete your varification and to get successful registration... !";
             if(sendMail($email,"OTP Varification for Registration",$body))
-                $data = array("otp"=>$otp);
+                $data = array("message"=>$otp);
             else
                 $data = array("message"=>"Please enter valid email");
         }
