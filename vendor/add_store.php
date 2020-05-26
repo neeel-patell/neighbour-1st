@@ -32,6 +32,8 @@
         echo json_encode(array("message"=>array("error"=>"Store has not registered")));
     }
     else{
+        $image = $_POST['image'];
+        file_put_contents("../images/vendor/store/$store.jpg",base64_decode($image));
         echo json_encode(array("message"=>array("success"=>"Store has been registered")));
     }
 ?>

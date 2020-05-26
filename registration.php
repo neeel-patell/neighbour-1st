@@ -10,6 +10,7 @@
     $password = $_POST['password'];
     $gender = $_POST['gender'];
     $date_of_birth = $_POST['date_of_birth'];
+    $date_of_birth = str_replace("/","-",$date_of_birth);
     $address = $_POST['address'];
     $area = $_POST['area'];
     $user_type = $_POST['user_type'];
