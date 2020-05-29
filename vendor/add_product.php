@@ -3,6 +3,7 @@
     require '../connection.php';
     $conn = getConn();
 
+    $data = array();
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
@@ -23,7 +24,10 @@
         $id = $row['id'];
         file_put_contents("../images/vendor/products/$id-1.jpg",base64_decode($image1));
         file_put_contents("../images/vendor/products/$id-2.jpg",base64_decode($image2));
-        echo json_encode(array("message"=>array("success"=>"Product Added Succcessfully")));
+        array_push($data,array("success"=>"Product Added Succcessfully"));
     }
-    
+    else{
+        array_push($data,array("error"=>"Product not added"));
+    }
+    echo json_encode(array("message"=>$data));
 ?>
