@@ -25,7 +25,7 @@
     $query = "insert into store(name,address,mobile,email,website,category_id,area_id,user_id) values ('$name','$address',$mobile,'$email','$website',$category,$area,$user)";
     
     if($conn->query($query) == true){
-        $query = "select id from store where name='$name' and address='$address' and user_id=$user";
+        $query = "select id from store where mobile=$mobile";
         $result = $conn->query($query);
         $row = $result->fetch_array();
         $store = $row['id'];
