@@ -5,21 +5,7 @@
     $data = array();
 
     $quantity = $_POST['quantity'];
-    $method = $_POST['method'];
     $id = $_POST['product'];
-
-    $query = "SELECT quantity FROM product WHERE id=$id";
-    $result = $conn->query($query);
-    $pro_quantity = $result->fetch_array();
-    if($method === "add"){
-        $quantity = $pro_quantity['quantity'] + $quantity;
-    }
-    else if($method === "remove"){
-        $quantity = $pro_quantity['quantity'] - $quantity;
-        if($quantity < 0){
-            $quantity = 0;
-        }
-    }
 
     $query = "UPDATE product SET
               quantity=$quantity
