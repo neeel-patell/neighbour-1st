@@ -9,7 +9,8 @@
     $result = $conn->query($query);
 
     while($row = $result->fetch_array()){
-        array_push($data,array("id"=>$row['id'],"name"=>$row['name']));
+        $image = base64_encode(file_get_contents("../images/vendor/store/".$row['id'].".jpg"));
+        array_push($data,array("id"=>$row['id'],"name"=>$row['name'],"image"=>$image));
     }
 
     echo json_encode(array("data"=>$data));

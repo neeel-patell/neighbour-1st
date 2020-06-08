@@ -1,8 +1,8 @@
 <?php
     header('content-type: application/json');
     $data = array();
-    $image = str_replace("https://lampros.ml/neighbour-1st","..",$_POST['image']);
-
+    $image = "../images/vendor/products/".$_POST['filename'].".jpg";
+    
     if(unlink($image) == true){
         array_push($data,array("message"=>"Successfully Removed"));
     }

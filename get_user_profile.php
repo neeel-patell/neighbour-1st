@@ -35,9 +35,10 @@
             $gender = "Rather not say";
         }
 
-        $row['date_of_birth'] = date('d/m/Y',strtotime($row['date_of_birth']));
+        $date_of_birth = date('d/m/Y',strtotime($row['date_of_birth']));
+        $image = base64_encode(file_get_contents("images/profile/".$login.".jpg"));
 
-        array_push($data,array("message"=>"Data found","first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"mobile"=>$row['mobile'],"gender"=>$gender,"date_of_birth"=>$row['date_of_birth'],"address"=>$address));
+        array_push($data,array("message"=>"Data found","first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"mobile"=>$row['mobile'],"gender"=>$gender,"date_of_birth"=>$date_of_birth,"address"=>$address,"image"=>$image));
 
     }
     else{
