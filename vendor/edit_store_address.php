@@ -9,7 +9,7 @@
     $area = $_POST['area'];
 
     $query = "UPDATE store
-              SET address='$addres', area_id=$area
+              SET address='$address', area_id=$area
               WHERE id=$store";
 
     if($conn->query($query) == true){

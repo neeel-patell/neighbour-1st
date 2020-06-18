@@ -11,6 +11,11 @@
     $mobile = $_POST['mobile'];
     $category = $_POST['category'];
 
+    $query = "select id from category where name='$category'";
+    $result = $conn->query($query);
+    $category = $result->fetch_array();
+    $category = $category['id'];
+
     $query = "UPDATE store
               SET name='$name', website='$website', email='$email', category_id=$category, mobile=$mobile
               WHERE id=$store";

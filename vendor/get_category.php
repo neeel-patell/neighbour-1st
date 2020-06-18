@@ -4,7 +4,7 @@
     $conn = getConn();
 
     $data = array();
-    $query = "select id,name from category where active=1 and service=0";
+    $query = "select id,name from category where active=1 and service=0 order by name asc";
     $result = $conn->query($query);
     
     while($row = $result->fetch_array()){

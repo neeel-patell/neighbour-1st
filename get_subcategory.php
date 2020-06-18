@@ -6,7 +6,7 @@
     
     $name = $_POST['name'];
     $name = strtolower($name);
-    $query = "select id,name from subcategory where lower(name) like '%$name%' and active=1 and service=0";
+    $query = "select id,name from subcategory where lower(name) like '%$name%' and active=1 and service=0 order by name";
     $result = $conn->query($query);
     
     while($row = $result->fetch_array()){
