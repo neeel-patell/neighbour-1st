@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    $msg = "";
+    if(isset($_SESSION['login'])){
+        header('location: dashboard.php');
+    }
+    if(isset($_GET['msg'])){
+        $msg = $_GET['msg'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,13 +18,18 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <header class="jumbotron mb-0 p-5" style="min-height: 10vh; background: #371af4;">
+        <header class="jumbotron mb-0 p-5" style="min-height: 15vh; background: #371af4;">
             <h4 class="text-white" style="font-family: verdana;">Neighbour - 1st <i class="fas fa-shopping-cart"></i></h4>
         </header>
-        <div class="container w-50 mt-3 mb-3">
-            <div class="card border-dark" style="min-height: 70vh;">
+        <div class="container w-50 mt-5 mb-5">
+            <div class="card border-dark" style="min-height: 65vh;">
                 <div class="container-fluid rounded text-center bg-danger text-white h4 text-monospace p-4 m-0">Login <i class="fas fa-user-alt"></i></div>
                 <form action="user_login.php" method="post" class="p-3">
+
+                    <?php if($msg != ""){ ?>
+                    <div class="alert alert-primary h6"><?php echo $msg ?></div>
+                    <?php } ?>
+                
                     <div class="form-group mt-2">
                         <label class="label">Email :</label>
                         <input type="email" class="form-control" name="email" id="email" maxlength="256" placeholder="Enter Email" required>
@@ -24,7 +39,7 @@
                         <div class="input-group mb-3">
                             <input type="password" id="pass" name="pass" class="form-control" placeholder="Enter Password" aria-label="Password" minlength="8" maxlength="32" required>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="show_pass"><i class="fas fa-eye"></i></button>
+                                <button class="btn btn-outline-secondary" tabindex="-1" type="button" id="show_pass"><i class="fas fa-eye"></i></button>
                             </div>
                         </div>
                     </div>
@@ -32,7 +47,7 @@
                         <button type="submit" class="form-control btn-success mr-3">Login <i class="fas fa-lock"></i></button>
                     </div>
                 </form>
-                <div class="container-fluid rounded text-right bg-dark h6 text-monospace p-4 m-0" style="position: absolute; bottom: 0;">
+                <div class="container-fluid rounded text-right bg-dark h6 text-monospace p-4 m-0" style="bottom: 0;">
                     <a href="forgot_password.php" class="btn-link text-white">Forgot Password ?</a>
                 </div>
             </div>
@@ -48,9 +63,11 @@
             $("#show_pass").click(function(){
                 if($('#pass').attr('type') === "password"){
                     $('#pass').attr('type','text');
+                    $('#show_pass').html("<i class='fas fa-eye-slash'></i>");
                 }
                 else{
                     $('#pass').attr('type','password');
+                    $('#show_pass').html("<i class='fas fa-eye'></i>");
                 }
             });
         </script>
