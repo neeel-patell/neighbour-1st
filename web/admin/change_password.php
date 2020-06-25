@@ -1,4 +1,10 @@
-<?php include_once 'validate_admin.php'; ?>
+<?php
+    include_once 'validate_admin.php'; 
+    $msg = "";
+    if(isset($_GET['msg'])){
+        $msg = $_GET['msg'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,6 +22,11 @@
                 <h5 class="text-center p-3 bg-primary text-white">Change Password</h5>
                 <div class="container w-75">
                     <form action="update_password.php" method="post" class="card p-4 mt-5">
+                    
+                        <?php if($msg != ""){ ?>
+                            <div class="alert alert-dark h6"><?php echo $msg ?></div>
+                        <?php } ?>
+                        
                         <div class="form-group mt-2">
                             <label class="label">New Password :</label>
                             <div class="input-group mb-3">

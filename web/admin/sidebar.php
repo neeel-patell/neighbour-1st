@@ -9,8 +9,8 @@
                 Manage State
             </a>
             <div class="collapse p-2" id="state_collapse">
-                <a class="nav-link" href="a.php">Add State</a>
-                <a class="nav-link" href="a.php">View State</a>
+                <a class="nav-link" href="add_state.php">Add State</a>
+                <a class="nav-link" href="view_state.php">View State</a>
             </div>
         </li>
         <li class="nav-item dropdown border-top p-2">
