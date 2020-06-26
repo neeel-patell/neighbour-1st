@@ -8,7 +8,7 @@
     }
     else{
         $city = $_POST['city'];
-        $result = $conn->query("select id,name,pincode from area where city_id=$city");
+        $result = $conn->query("select id,name,pincode from area where city_id=$city and active=1");
         while($row = $result->fetch_array()){
             array_push($data,array("id"=>$row['id'],"name"=>$row['name'],"pincode"=>$row['pincode']));
         }
