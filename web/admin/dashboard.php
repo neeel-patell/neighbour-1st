@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="bg-dark container-fluid p-3" id="sidebarCollapse" style="min-height: 10vh;">
-            <h6>Dashboard</h6>    
+            <h4 class="text-white">Neighbour-1st</h4>
             <button type="button" class="btn btn-outline-light mr-2 mt-2"><i class="fas fa-grip-lines"></i></button>
         </div>
         <div class="d-flex p-0">

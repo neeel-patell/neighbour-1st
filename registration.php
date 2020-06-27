@@ -17,9 +17,14 @@
     
     $date_of_birth = date("Y-m-d",strtotime($date_of_birth));
     $password = hash("sha256",$password);
-    
-    $query = "insert into login(first_name,last_name,mobile,email,password,gender,date_of_birth,address,area_id,user_type) values
-    ('$first_name','$last_name',$mobile,'$email','$password',$gender,'$date_of_birth','$address',$area,$user_type)";
+    $active = 1;
+
+    if($user_type == 1){
+        $active = 0;
+    }
+
+    $query = "insert into login(first_name,last_name,mobile,email,password,gender,date_of_birth,address,area_id,user_type,active) values
+    ('$first_name','$last_name',$mobile,'$email','$password',$gender,'$date_of_birth','$address',$area,$user_type,$active)";
     if($conn->query($query) == true){
         $image = $_POST['image'];
         $query = "select id from login where mobile = $mobile";

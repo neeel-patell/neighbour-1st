@@ -21,8 +21,8 @@
         <header class="jumbotron mb-0 p-5" style="min-height: 15vh; background: #371af4;">
             <h4 class="text-white" style="font-family: verdana;">Neighbour - 1st <i class="fas fa-shopping-cart"></i></h4>
         </header>
-        <div class="container w-50 mt-5 mb-5">
-            <div class="card border-dark" style="min-height: 65vh;">
+        <div class="container w-50 mt-5 mb-5" style="min-height: 65vh;">
+            <div class="card border-dark">
                 <div class="container-fluid rounded text-center bg-danger text-white h4 text-monospace p-4 m-0">Login <i class="fas fa-user-alt"></i></div>
                 <form action="user_login.php" method="post" class="p-3">
 
