@@ -12,19 +12,19 @@
     if(mysqli_num_rows($result) != 0){
         $row = $result->fetch_array();
         if($row['active'] == 0){
-            echo json_encode(array("error"=>array("message"=>"You are disabled by admin")));
+            echo json_encode(array("data"=>array("message"=>"New account will be activated in 24hrs or contact admin")));
         }
         else{
-            echo json_encode(array("data"=>array("user_type"=>$row['user_type'],"id"=>$row['id'],"first_name"=>$row['first_name'],"last_name"=>$row['last_name'])));
+            echo json_encode(array("data"=>array("user_type"=>$row['user_type'],"id"=>$row['id'],"first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"message"=>0)));
         }
     }
     else{
         $result = $conn->query("select id from login where email = '$email'");
         if(mysqli_num_rows($result) == 0){
-            echo json_encode(array("error"=>array("message"=>"Email Not registered")));
+            echo json_encode(array("data"=>array("message"=>"Email Not registered")));
         }
         else{
-            echo json_encode(array("error"=>array("message"=>"Wrong Password")));
+            echo json_encode(array("data"=>array("message"=>"Wrong Password")));
         }
     }
 ?>
