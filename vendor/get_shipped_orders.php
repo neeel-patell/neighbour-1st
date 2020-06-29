@@ -18,11 +18,11 @@
         array_push($order_array,$row['id']);
     }
     $order_string = implode(",",$order_array);
-    $query = "SELECT id,user_id,created_at'date' from `order` where id IN($order_string) AND `status`=1";
+    $query = "SELECT id,address_id,created_at'date' from `order` where id IN($order_string) AND `status`=1  order by created_at desc";
     $result = $conn->query($query);
     while($row = $result->fetch_array()){
         $temp = array();
-        $user = $conn->query("select first_name,last_name from login where id=".$row['user_id']);
+        $user = $conn->query("select first_name,last_name from user_address where id=".$row['address']);
         $user = $user->fetch_array();
         $user = $user['first_name']." ".$user['last_name'];
         $date = date('dS F Y',strtotime($row['date']));

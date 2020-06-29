@@ -5,19 +5,42 @@
     $data = array();
 
     $store = $_POST['store'];
-    $query = "SELECT name,price,`order`.quantity,`order`.id'id',weight,user_id,`order`.created_at'date' FROM product join `order` WHERE product.id = `order`.product_id and product.store_id = $store and `order`.`status` = 0 order by `order`.created_at desc";
-    $result = $conn->query($query);
+    $order = $_POST['order'];
+    
+    $order_array = $conn->query("select address_id from `order` where id=$order");
+    $order_array = $order_array->fetch_array();
+    $query = "SELECT line1,line2,area_id,first_name,last_name,mobile from user_address where id=".$order_array['address_id'];
+    $address = $conn->query($query);
+    $address = $address->fetch_array();
+    $user = $address['first_name']." ".$address['last_name'];
 
-    while($row = $result->fetch_array()){
-        $total = $row['price']*$row['quantity'];
-        $query = "select first_name, last_name from login where id=".$row['user_id'];
-        $date = date('dS F Y',strtotime($row['date']));
-        $time = date('H:i A',strtotime($row['date']));
-        $name = $conn->query($query);
-        $name = $name->fetch_array();
-        $name = $name['first_name']." ".$name['last_name'];
-        array_push($data,array("name"=>$row['name'],"price"=>$row['price'],"quantity"=>$row['quantity'],"id"=>$row['id'],"total"=>$total,"username"=>$name,"date"=>$date,"time"=>$time));
+    $area = $conn->query("select name,pincode,city_id from area where id=".$address['area_id']);
+    $area = $area->fetch_array();
+
+    $city = $conn->query("select name,state_id from city where id=".$area['city_id']);
+    $city = $city->fetch_array();
+
+    $state = $conn->query("select name from state where id=".$city['state_id']);
+    $state = $state->fetch_array();
+
+    $address = $address['line1'].", ".$address['line2'].", ".$area['name'].", ".$city['name'].", ".$state['name']." - ".$area['pincode'];
+
+    $product = $conn->query("select id from product where store_id=$store");
+    $product_db = array();
+    while($row = $product->fetch_array()){
+        array_push($product_db,$row['id']);
     }
-
+    $product_array = $conn->query("SELECT product_id,quantity from order_product where order_id=$order");
+    $product_response = array();
+    while($row = $product_array->fetch_array()){
+        if(in_array($row['product_id'],$product_db) == true){
+            $product = $conn->query("SELECT name,price,weight,description from product where id=".$row['product_id']);
+            $product = $product->fetch_array();
+            array_push($product_response,array("id"=>$row['product_id'],"name"=>$product['name'],"price"=>$product['price'],"quantity"=>$row['quantity'],"weight"=>$product['weight'],"description"=>$product['description']));
+        }
+    }
+    if($product_response != null){
+        array_push($data,array("name"=>$user,"address"=>$address,"product"=>$product_response));
+    }
     echo json_encode(array("data"=>$data));
 ?>
