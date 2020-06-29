@@ -1,6 +1,7 @@
 <?php
     include_once 'validate_admin.php'; 
     $state = $conn->query("select id,name,active from state");
+    $msg = "";
     if(isset($_GET['msg'])){
         $msg = $_GET['msg'];
     }

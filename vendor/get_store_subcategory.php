@@ -7,7 +7,6 @@
     $store = $_POST['id'];
     $query = "SELECT subcategory.id'id',subcategory.name'name' FROM subcategory JOIN store_subcategory WHERE
     subcategory.id = store_subcategory.`subcategory_id` AND store_subcategory.`store_id` = $store";
-    echo $query;
     $result = $conn->query($query);
     
     while($row = $result->fetch_array()){
