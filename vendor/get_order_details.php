@@ -7,7 +7,7 @@
     $store = $_POST['store'];
     $order = $_POST['order'];
     
-    $order_array = $conn->query("select address_id from `order` where id=$order");
+    $order_array = $conn->query("select created_at'date',address_id from `order` where id=$order");
     $order_array = $order_array->fetch_array();
     $query = "SELECT line1,line2,area_id,first_name,last_name,mobile from user_address where id=".$order_array['address_id'];
     $address = $conn->query($query);
@@ -34,13 +34,15 @@
     $product_response = array();
     while($row = $product_array->fetch_array()){
         if(in_array($row['product_id'],$product_db) == true){
-            $product = $conn->query("SELECT name,price,weight,description from product where id=".$row['product_id']);
-            $product = $product->fetch_array();
-            array_push($product_response,array("id"=>$row['product_id'],"name"=>$product['name'],"price"=>$product['price'],"quantity"=>$row['quantity'],"weight"=>$product['weight'],"description"=>$product['description']));
+            array_push($product_response,array("id"=>$row['product_id'],"quantity"=>$row['quantity']));
         }
     }
+
+    $date = date('dS F Y',strtotime($order_array['date']));
+    $time = date('H:i A',strtotime($order_array['date']));
+    
     if($product_response != null){
-        array_push($data,array("name"=>$user,"address"=>$address,"product"=>$product_response));
+        array_push($data,array("name"=>$user,"date"=>$date,"time"=>$time,"address"=>$address,"product"=>$product_response));
     }
     echo json_encode(array("data"=>$data));
 ?>

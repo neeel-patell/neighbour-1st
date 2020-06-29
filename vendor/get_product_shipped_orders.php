@@ -5,19 +5,25 @@
     $data = array();
 
     $product = $_POST['product'];
-    $query = "SELECT name,price,`order`.quantity,`order`.id'id',weight,user_id,`order`.created_at'date' FROM product join `order` WHERE product.id = `order`.product_id and product.id = $product and `order`.status = 1 order by `order`.created_at desc";
-    $result = $conn->query($query);
-
-    while($row = $result->fetch_array()){
-        $total = $row['price']*$row['quantity'];
-        $query = "select first_name, last_name from login where id=".$row['user_id'];
-        $date = date('dS F Y',strtotime($row['date']));
-        $time = date('H:i A',strtotime($row['date']));
-        $name = $conn->query($query);
-        $name = $name->fetch_array();
-        $name = $name['first_name']." ".$name['last_name'];
-        array_push($data,array("name"=>$row['name'],"price"=>$row['price'],"quantity"=>$row['quantity'],"id"=>$row['id'],"total"=>$total,"username"=>$name,"date"=>$date,"time"=>$time));
+    $product_query = $conn->query("SELECT price from product where id=$product");
+    $product_query = $product_query->fetch_array();
+    $product_price = $product_query['price'];
+    $query = "SELECT order_id,quantity from order_product where product_id=$product";
+    $order_product = $conn->query($query);
+    while($row = $order_product->fetch_array()){
+        $query = "SELECT id,created_at'date',address_id from `order` where `status`=1 AND id=".$row['order_id'];
+        $order = $conn->query($query);
+        if(mysqli_num_rows($order) != 0){
+            $order = $order->fetch_array();
+            $user = $conn->query("select first_name,last_name from user_address where id=".$order['address_id']);
+            $user = $user->fetch_array();
+            $user = $user['first_name']." ".$user['last_name'];
+            $date = date('dS F Y',strtotime($order['date']));
+            $time = date('H:i A',strtotime($order['date']));
+            $total = $product_price * $row['quantity'];
+            array_push($data,array("id"=>$order['id'],"username"=>$user,"total"=>$total,"date"=>$date,"time"=>$time));
+        }
     }
-
+    
     echo json_encode(array("data"=>$data));
 ?>

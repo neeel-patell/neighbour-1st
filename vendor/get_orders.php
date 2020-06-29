@@ -21,7 +21,6 @@
     $query = "SELECT id,created_at'date',address_id from `order` where id IN($order_string) AND `status`=0 order by created_at desc";
     $result = $conn->query($query);
     while($row = $result->fetch_array()){
-        $temp = array();
         $user = $conn->query("select first_name,last_name from user_address where id=".$row['address_id']);
         $user = $user->fetch_array();
         $user = $user['first_name']." ".$user['last_name'];
