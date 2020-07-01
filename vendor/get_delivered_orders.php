@@ -18,7 +18,7 @@
         array_push($order_array,$row['id']);
     }
     $order_string = implode(",",$order_array);
-    $query = "SELECT id,address_id,created_at'date' from `order` where id IN($order_string) AND `status`=0  order by created_at desc";
+    $query = "SELECT id,address_id,created_at'date' from `order` where id IN($order_string) AND `status`=2  order by created_at desc";
     $result = $conn->query($query);
     while($row = $result->fetch_array()){
         $user = $conn->query("select first_name,last_name from user_address where id=".$row['address_id']);

@@ -7,7 +7,7 @@
     for($i=1 ; $i<=5 ; $i++){
         if(file_exists("../images/vendor/products/$product-$i.jpg") == true){
             $image = base64_encode(file_get_contents("../images/vendor/products/$product-$i.jpg"));
-            array_push($data,array("fiename"=>"$product-$i","image"=>$image));
+            array_push($data,array("filename"=>"$product-$i","image"=>$image));
         }
     }
 
