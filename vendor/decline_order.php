@@ -47,6 +47,10 @@
                 for($i=0; $i<count($vendor_product);$i++){
                     $product_id = $vendor_product[$i]['product_id'];
                     $quantity = $vendor_product[$i]['quantity'];
+                    $update_query = "UPDATE product
+                                      SET quantity = quantity + $quantity
+                                      WHERE id=$product_id;";
+                    $conn->query($update_query);
                     $query .= "INSERT INTO order_product(order_id,product_id,quantity) VALUES($order_id,$product_id,$quantity);";
                 }
                 if($conn->multi_query($query) == true){
