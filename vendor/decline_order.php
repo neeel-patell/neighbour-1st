@@ -39,7 +39,7 @@
             $address_id = $order_details['address_id'];
             $query = "INSERT INTO `order`(user_id,address_id,`status`) VALUES($user_id,$address_id,3)";
             if($conn->query($query) == true){
-                $query = "select id from `order` where user_id=$user_id AND $address_id=$address_id AND `status`=3 order by id desc";
+                $query = "select id from `order` where user_id=$user_id AND address_id=$address_id AND `status`=3 order by id desc LIMIT 0,1";
                 $order_id = $conn->query($query);
                 $order_id = $order_id->fetch_array();
                 $order_id = $order_id['id'];
