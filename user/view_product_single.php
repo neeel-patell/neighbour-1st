@@ -19,8 +19,14 @@
         $weight[0] = $weight[1] = " ";
         $weight = trim($weight)." G";
     }
-    
-    array_push($data,array("id"=>$row['id'],"name"=>$row['name'],"price"=>$row['price'],"description"=>$row['description'],"weight"=>$weight));
+    $images = array();
+    for($i=1 ; $i<=5 ; $i++){
+        if(file_exists("../images/vendor/products/$product-$i.jpg") == true){
+            $image = base64_encode(file_get_contents("../images/vendor/products/$product-$i.jpg"));
+            array_push($images,$image);
+        }
+    }
+    array_push($data,array("id"=>$row['id'],"name"=>$row['name'],"price"=>$row['price'],"description"=>$row['description'],"weight"=>$weight,"images"=>$images));
     
     echo json_encode(array("data"=>$data));
 ?>
