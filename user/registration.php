@@ -1,6 +1,6 @@
 <?php 
     header('content-type: application/json');
-    include 'connection.php';
+    include '../connection.php';
     $conn = getConn();
     
     $first_name = $_POST['first_name'];
@@ -16,7 +16,7 @@
     
     $date_of_birth = date("Y-m-d",strtotime($date_of_birth));
     $password = hash("sha256",$password);
-
+    
     $query = "insert into consumer(first_name,last_name,mobile,email,password,gender,dob,address,area_id) values
     ('$first_name','$last_name',$mobile,'$email','$password',$gender,'$date_of_birth','$address',$area)";
     if($conn->query($query) == true){
@@ -31,9 +31,5 @@
     }
     else{
         echo json_encode(array("message"=>array("error"=>"Email or mobile already registered")));
-    }
-    
-
-    
-    
+    }    
 ?>

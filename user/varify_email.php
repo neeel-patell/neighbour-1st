@@ -1,6 +1,6 @@
 <?php 
     require '../connection.php';
-    require 'mail/mail_sender.php';
+    require '../mail/mail_sender.php';
     header('content-type: application/json');
     $data = array();
     $conn = getConn();

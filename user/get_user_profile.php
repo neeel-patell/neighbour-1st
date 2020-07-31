@@ -6,7 +6,7 @@
 
     $login = $_POST['user'];
 
-    $query = "select id,first_name,last_name,mobile,email,gender,date_of_birth,address,area_id from consumer where id=$login";
+    $query = "select id,first_name,last_name,mobile,email,gender,dob,address,area_id from consumer where id=$login";
     $result = $conn->query($query);
 
     if(mysqli_num_rows($result) != 0){
@@ -35,7 +35,7 @@
             $gender = "Rather not say";
         }
 
-        $date_of_birth = date('d/m/Y',strtotime($row['date_of_birth']));
+        $date_of_birth = date('d/m/Y',strtotime($row['dob']));
         $image = base64_encode(file_get_contents("../images/profile/".$login.".jpg"));
 
         array_push($data,array("message"=>"Data found","first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"mobile"=>$row['mobile'],"gender"=>$gender,"date_of_birth"=>$date_of_birth,"address"=>$address,"image"=>$image));

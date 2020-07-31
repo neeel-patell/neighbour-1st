@@ -12,6 +12,7 @@
               where email='$email'";
     
     if($conn->query($query) == true){
+        echo $query;
         array_push($data,array("message"=>"Updated Successfully"));
     }
     else{

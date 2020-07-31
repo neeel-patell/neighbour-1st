@@ -1,5 +1,5 @@
 <?php
-    include 'connection.php';
+    include '../connection.php';
     include '../mail/mail_sender.php';
     $conn = getConn();
     header('content-type: application/json');
