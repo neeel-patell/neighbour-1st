@@ -1,5 +1,5 @@
 <?php 
-    require 'connection.php';
+    require '../connection.php';
     require 'mail/mail_sender.php';
     header('content-type: application/json');
     $data = array();
@@ -9,7 +9,7 @@
     }
     else{
         $email = $_POST['email'];
-        $query = "select id from login where email = '$email'";
+        $query = "select id from consumer where email = '$email'";
         $result = $conn->query($query);
         if(mysqli_num_rows($result) == 0){
             $otp = rand(100000,999999);

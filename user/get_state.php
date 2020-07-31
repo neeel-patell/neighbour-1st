@@ -1,5 +1,5 @@
 <?php 
-    require 'connection.php';
+    require '../connection.php';
     header('content-type: application/json');
     $conn = getConn();
     $data = array();

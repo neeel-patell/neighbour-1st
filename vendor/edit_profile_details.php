@@ -1,6 +1,6 @@
 <?php
     header('content-type: application/json');
-    require 'connection.php';
+    require '../connection.php';
     $conn = getConn();
     $data = array();
 
@@ -12,7 +12,7 @@
     $date_of_birth = str_replace("/","-",$_POST['date_of_birth']);
     $date_of_birth = date('Y-m-d',strtotime($date_of_birth));
 
-    $query = "UPDATE login set
+    $query = "UPDATE vendor set
               first_name='$first_name', last_name='$last_name', mobile=$mobile, gender=$gender, date_of_birth='$date_of_birth'
               where id=$login";
 

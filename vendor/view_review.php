@@ -9,7 +9,7 @@
     $result = $conn->query($query);
 
     while($row = $result->fetch_array()){
-        $user = $conn->query("SELECT first_name,last_name from `login` where id=".$row['user_id']);
+        $user = $conn->query("SELECT first_name,last_name from `consumer` where id=".$row['user_id']);
         $user = $user->fetch_array();
         array_push($data,array("name"=>$user['first_name']." ".$user['last_name'],"description"=>$row['description']));
     }

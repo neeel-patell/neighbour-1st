@@ -1,5 +1,5 @@
 <?php
-    include 'connection.php';
+    include '../connection.php';
     $conn = getConn();
     header('content-type: application/json');
     $data = array();
@@ -7,7 +7,7 @@
     $email = $_POST['email'];
     $password = hash('sha256',$_POST['password']);
 
-    $query = "UPDATE login
+    $query = "UPDATE consumer
               SET `password`='$password'
               where email='$email'";
     
