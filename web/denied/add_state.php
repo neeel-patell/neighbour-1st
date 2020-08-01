@@ -18,7 +18,7 @@
         </div>
         <div class="d-flex p-0">
             <?php include_once 'sidebar.php' ?>
-            <div class="container-fluid p-0" id="content" style="display :block;">
+            <div class="container-fluid p-0" id="content">
                 <h5 class="text-center p-3 bg-primary text-white">Add State</h5>
                 <div class="container w-75">
                     <form action="insert_state.php" method="post" class="card p-4 mt-5">
@@ -32,7 +32,7 @@
                             <input type="text" name="state" id="state" class="form-control" max-length="30" placeholder="Enter State Name" required>
                         </div>
                         <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-success">Add</button>
+                            <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
                         </div>
                     </form>
                 </div>
