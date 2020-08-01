@@ -1,8 +1,4 @@
 <nav id="sidebar" class="card" style="min-height: 90vh;">
-    <div class="mt-3 text-center">
-        <img src="../../images/profile/<?php echo $login ?>.jpg" alt="Profile Image" style="vertical-align: middle;width: 50px;height: 50px; border-radius: 50%;">
-        <h6 class="mt-3"><?php echo $fullname; ?></h6>
-    </div>
     <ul class="navbar-nav flex-column text-center mt-3" style="font-weight: 500">
         <li class="nav-item dropdown border-top p-2">
             <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#state_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
