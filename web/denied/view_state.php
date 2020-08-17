@@ -19,9 +19,9 @@
         </div>
         <div class="d-flex p-0">
             <?php include_once 'sidebar.php' ?>
-            <div class="container-fluid p-0" id="content" style="display :block;">
+            <div class="container-fluid p-0" id="content">
                 <h5 class="text-center p-3 bg-primary text-white">View State</h5>
-                <div class="table-responsive p-4">
+                <div class="table-responsive p-3 border-0 table-bordered text-center">
                     
                     <?php if($msg != ""){ ?>
                     <div class="alert alert-primary h6"><?php echo $msg ?></div>
@@ -31,7 +31,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Sr No.</th>
-                                <th scope="col">Name</th>
+                                <th scope="col" class="w-75">Name</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -43,11 +43,14 @@
                                         <th scope="row"><?php echo $c++; ?></th>
                                         <td><?php echo $row['name']; ?></td>
                                         <td>
+
                                             <?php if($row['active'] == 1){ ?>
-                                            <button class="btn p-0 btn-link" onclick="if(confirm('Do You Want to Disable <?php echo $row['name'] ?>?') == true){location.href='disable_state.php?state=<?php echo $row['id']; ?>'}">Disable</a>
+                                            <button class="btn p-0 btn-link" onclick="if(confirm('Do You Want to Disable <?php echo $row['name'] ?>?') == true){location.href='disable_state.php?state=<?php echo $row['id']; ?>'}">Disable</button>
                                             <?php } else{ ?>
-                                            <button class="btn p-0 btn-link" onclick="if(confirm('Do You Want to Enable <?php echo $row['name'] ?>?') == true){location.href='enable_state.php?state=<?php echo $row['id']; ?>'}">Enable</a>
-                                            <?php }?>
+                                            <button class="btn p-0 btn-link" onclick="if(confirm('Do You Want to Enable <?php echo $row['name'] ?>?') == true){location.href='enable_state.php?state=<?php echo $row['id']; ?>'}">Enable</button>
+                                            <?php } ?>
+
+                                            / <button class="btn p-0 btn-link" onclick="if(confirm('Do You Want to Delete <?php echo $row['name'] ?>?') == true){location.href='delete_state.php?state=<?php echo $row['id']; ?>'}">Delete</button> 
                                         </td>
                                     </tr>
                             <?php } ?>
@@ -56,6 +59,6 @@
                 </div>
             </div>
         </div>
-        <?php include_once 'footer.php' ?>
+        <?php include_once 'footer.php'; ?>
     </body>
 </html>

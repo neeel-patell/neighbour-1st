@@ -20,7 +20,7 @@
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-0" id="content">
                 <h5 class="text-center p-3 bg-primary text-white">Add State</h5>
-                <div class="container w-75">
+                <div class="container">
                     <form action="insert_state.php" method="post" class="card p-4 mt-5">
                     
                         <?php if($msg != ""){ ?>
@@ -38,28 +38,6 @@
                 </div>
             </div>
         </div>
-        <?php include_once 'footer.php' ?>
-        <script type="text/javascript">
-            $('#show_pass').click(function(){
-                if($('#pass').attr('type') === "password"){
-                    $('#pass').attr('type','text');
-                    $('#show_pass').html("<i class='fas fa-eye-slash'></i>");
-                }
-                else{
-                    $('#pass').attr('type','password');
-                    $('#show_pass').html("<i class='fas fa-eye'></i>");
-                }
-            });
-            $('#show_con_pass').click(function(){
-                if($('#con_pass').attr('type') === "password"){
-                    $('#con_pass').attr('type','text');
-                    $('#show_con_pass').html("<i class='fas fa-eye-slash'></i>");
-                }
-                else{
-                    $('#con_pass').attr('type','password');
-                    $('#show_con_pass').html("<i class='fas fa-eye'></i>");
-                }
-            });
-        </script>
+        <?php include_once 'footer.php'; ?>
     </body>
 </html>
