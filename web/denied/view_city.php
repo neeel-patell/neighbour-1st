@@ -1,6 +1,7 @@
 <?php
     include_once 'validate_admin.php'; 
     $msg = "";
+    $states = $conn->query("SELECT id,name from state ORDER BY `name`");
     $query = "select id,name,active,state_id from city";
     if(isset($_GET['msg'])){
         $msg = $_GET['msg'];
@@ -29,12 +30,28 @@
             <div class="container-fluid p-0" id="content">
                 <h5 class="text-center p-3 bg-primary text-white">View City</h5>
                 <div class="table-responsive p-3 border-0 table-bordered text-center">
-                    
+
                     <?php if($msg != ""){ ?>
                     <div class="alert alert-primary h6"><?php echo $msg ?></div>
                     <?php } ?>
                     
-                    <table class="table border">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col" class="border-0"></th>
+                                <th scope="col" class="border-0">
+                                    <select id="state" class="form-control" onchange='location.href="view_city.php?state="+document.getElementById("state").value;'>
+                                        <option value="">View All Cities</option>
+
+                                        <?php while($row = $states->fetch_array()){ ?>
+                                        <option <?php if($state == $row['id']) echo "selected";?> value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+                                        <?php } ?>
+
+                                    </select>
+                                </th>
+                                <th scope="col" class="border-0"></th>
+                            </tr>
+                        </thead>
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Sr No.</th>
