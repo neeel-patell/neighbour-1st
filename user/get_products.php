@@ -6,7 +6,7 @@
 
     $store = $_POST['store'];
     $subcat = $_POST['subcategory'];
-    $query = "SELECT id,name,price,weight FROM product WHERE store_id=$store AND subcategory_id=$subcat AND quantity>0";
+    $query = "SELECT id,name,price,weight FROM product WHERE store_id=$store AND subcategory_id=$subcat AND quantity>0 AND visibility=1";
     $result = $conn->query($query);
 
     while($row = $result->fetch_array()){

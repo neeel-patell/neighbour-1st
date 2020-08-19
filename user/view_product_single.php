@@ -5,7 +5,7 @@
     $data = array();
 
     $product = $_POST['product'];
-    $query = "SELECT id,name,price,description,weight,subcategory_id FROM product WHERE id=$product";
+    $query = "SELECT id,name,price,description,weight,subcategory_id,quantity FROM product WHERE id=$product";
     $result = $conn->query($query);
     $row = $result->fetch_array();
     $weight = $row['weight'];
@@ -26,7 +26,7 @@
             array_push($images,$image);
         }
     }
-    array_push($data,array("id"=>$row['id'],"name"=>$row['name'],"price"=>$row['price'],"description"=>$row['description'],"weight"=>$weight,"images"=>$images));
+    array_push($data,array("quantity"=>$row['quantity'],"id"=>$row['id'],"name"=>$row['name'],"price"=>$row['price'],"description"=>$row['description'],"weight"=>$weight,"images"=>$images));
     
     echo json_encode(array("data"=>$data));
 ?>
