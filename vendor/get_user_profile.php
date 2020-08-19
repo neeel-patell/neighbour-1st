@@ -6,7 +6,7 @@
 
     $login = $_POST['user'];
 
-    $query = "select first_name,last_name,mobile,email,gender,dob,address,area_id from vendor where id=$login";
+    $query = "select first_name,last_name,mobile,email,gender,dob,address,area_id,verified from vendor where id=$login";
     $result = $conn->query($query);
 
     if(mysqli_num_rows($result) != 0){
@@ -38,7 +38,7 @@
         $date_of_birth = date('d/m/Y',strtotime($row['dob']));
         $image = base64_encode(file_get_contents("../images/profile/vendor/".$login.".jpg"));
 
-        array_push($data,array("message"=>"Data found","first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"mobile"=>$row['mobile'],"gender"=>$gender,"date_of_birth"=>$date_of_birth,"address"=>$address,"image"=>$image));
+        array_push($data,array("message"=>"Data found","first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"mobile"=>$row['mobile'],"gender"=>$gender,"date_of_birth"=>$date_of_birth,"address"=>$address,"verified"=>$row['verified'],"image"=>$image));
 
     }
     else{
