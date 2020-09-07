@@ -5,17 +5,17 @@
     $data = array();
 
     $login = $_POST['user'];
-    $mobile = $_POST['mobile'];
+    $email = $_POST['email'];
     
     $query = "UPDATE consumer set
-              mobile=$mobile
+              email='$email'
               where id=$login";
 
     if($conn->query($query) == true){
-        array_push($data,array("message"=>"Mobile number is Updated"));
+        array_push($data,array("message"=>"Email address Updated"));
     }
     else{
-        array_push($data,array("message"=>"Mobile is already Associated with other Account"));
+        array_push($data,array("message"=>"Email is already Associated with other Account"));
     }
 
     echo json_encode(array("data"=>$data));

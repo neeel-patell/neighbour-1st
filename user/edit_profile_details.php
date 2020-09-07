@@ -7,12 +7,9 @@
     $login = $_POST['user'];
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
-    $gender = $_POST['gender'];
-    $date_of_birth = str_replace("/","-",$_POST['date_of_birth']);
-    $date_of_birth = date('Y-m-d',strtotime($date_of_birth));
 
     $query = "UPDATE consumer set
-              first_name='$first_name', last_name='$last_name', gender=$gender, dob='$date_of_birth'
+              first_name='$first_name', last_name='$last_name'
               where id=$login";
 
     if($conn->query($query) == true){
