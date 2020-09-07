@@ -11,7 +11,7 @@
 
     if(mysqli_num_rows($result) != 0){
         $row = $result->fetch_array();
-        $image = base64_encode(file_get_contents("../images/profile/".$login.".jpg"));
+        $image = base64_encode(file_get_contents("../images/profile/consumer/".$login.".jpg"));
         array_push($data,array("message"=>"Data found","first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"email"=>$row['email'],"mobile"=>$row['mobile'],"image"=>$image));
     }
     else{
