@@ -7,7 +7,7 @@
     $login = $_POST['user'];
     $password = hash("sha256",$_POST['password']);
     
-    $query = "UPDATE consumer set password='$password' where id=$login";
+    $query = "UPDATE consumer set `password`='$password' where id=$login";
 
     if($conn->query($query) == true){
         array_push($data,array("message"=>"Password Changed"));
